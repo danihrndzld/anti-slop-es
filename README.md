@@ -21,7 +21,7 @@ npx github:danihrndzld/anti-slop-es --dir ruta # destino a mano
 npx github:danihrndzld/anti-slop-es --desinstalar
 ```
 
-Publicada en npm, el comando corto también sirve: `npx anti-slop-es`.
+Aún no está publicada en npm; el spec `github:` es la vía soportada hoy. Al publicarla, `npx anti-slop-es` hará lo mismo.
 
 ### Con Claude Code (pega este prompt)
 
