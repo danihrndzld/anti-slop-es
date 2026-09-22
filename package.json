@@ -1,0 +1,15 @@
+{
+  "name": "anti-slop-es",
+  "version": "1.0.0",
+  "description": "Skill en español para Claude Code: detecta y elimina slop de IA en texto, código y diseño con umbrales de densidad medibles.",
+  "bin": { "anti-slop-es": "bin/instalar.mjs" },
+  "type": "module",
+  "files": ["SKILL.md", "references", "scripts", "bin", "README.md"],
+  "scripts": {
+    "test": "python3 scripts/detectar_slop.py --autotest && python3 scripts/limpiar_slop.py --autotest"
+  },
+  "keywords": ["claude-code", "skill", "anti-slop", "ai-slop", "espanol", "writing", "code-review"],
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "repository": { "type": "git", "url": "git+https://github.com/danihrndzld/anti-slop-es.git" }
+}
