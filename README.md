@@ -2,9 +2,9 @@
 
 Skill de Claude Code, en español, para detectar y quitar **slop de IA** en texto, código y diseño.
 
-No es una lista de palabras prohibidas. Es un chequeo de **densidad**: una "raya larga", un "profundizar" o un tríptico son español normal — varios apilados en un pasaje corto, sin un solo dato concreto, es el perfil de slop.
+Mide **densidad**, no palabras sueltas. Una raya larga o un tríptico aislados son español normal. Varios juntos en un pasaje corto y sin un solo dato concreto son el perfil de slop.
 
-Fusiona tres fuentes:
+Junta tres fuentes:
 
 - el toolkit `anti-slop` (patrones de texto, código y diseño),
 - el flujo `ai-slop-cleaner` de oh-my-claudecode (limpieza de código sin cambiar comportamiento, con modo revisor),
@@ -73,11 +73,11 @@ El detector cuenta señales ponderadas por cada 1.000 palabras:
 | 18–35 | perfil de slop: reescribir secciones |
 | 35+ | plantilla de modelo: reescribir de cero |
 
-Ejemplo real de los autotests: un párrafo con mediciones concretas da **0.0**; un párrafo de relleno corporativo da **524**.
+Los dos párrafos del autotest: uno que mide la deriva de un PCA9685 con osciloscopio (62.3 Hz contra 60 nominales) da **0.0**. Uno de relleno corporativo, con metacomentario, citas sin fuente y un cierre que no toma partido, da **524.6**.
 
-Categorías con más peso (las que casi no tienen otra explicación): residuo de chat, citas fantasma, paralelismo negativo, metacomentario, cierre vacío. Las de menos peso (léxico de época, inflación latinizante) solo cuentan acumuladas.
+Pesos: residuo de chat vale 4. Citas fantasma, paralelismo negativo, metacomentario y cierre vacío valen 3, porque casi nunca tienen otra explicación. Inflación latinizante vale 1 y léxico de época vale 2; solo pesan cuando se acumulan.
 
-Los detectores son ruidosos, sobre todo con no nativos, y el vocabulario rota por generación de modelo. Usa el número para encontrar candidatos, nunca como veredicto de autoría.
+El detector falla más con autores no nativos, y el vocabulario delator cambia con cada generación de modelo. Sirve para encontrar tramos a revisar. No sirve para decidir quién escribió algo.
 
 ## Qué hay dentro
 
@@ -98,13 +98,13 @@ bin/instalar.mjs                instalador npx, sin dependencias
 npm test
 ```
 
-Corre los autotests de ambos scripts: verifica que el texto con datos concretos no se marque y que el texto de plantilla sí, sin falsos positivos.
+Corre los autotests de los dos scripts. El detector exige que el párrafo del PCA9685 quede bajo 8 y el de relleno sobre 35, con citas fantasma, paralelismo negativo y metacomentario detectados. Son dos casos fijos: no miden la tasa de falsos positivos en texto real.
 
-## La prueba que ningún script hace
+## Lo que el script no mide
 
-Después de cada párrafo: ¿puedes repetir un hecho concreto? Si no, sobra — lo haya escrito una persona o un modelo.
+Después de cada párrafo, pregúntate si puedes repetir un hecho concreto. Si no puedes, el párrafo sobra, lo haya escrito una persona o un modelo.
 
-Se arregla **sumando**: nombres, fechas, números, un fracaso propio, una herramienta nombrada. Cambiar sinónimos solo aplana la voz.
+Se arregla **sumando** nombres, fechas, números, un fracaso propio o una herramienta con nombre. Cambiar sinónimos solo aplana la voz.
 
 ## Fuentes
 
