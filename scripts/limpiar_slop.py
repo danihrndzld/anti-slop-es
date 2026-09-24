@@ -24,6 +24,14 @@ REGLAS = [
     (r"(?i)^\s*en este (artículo|post|documento|apartado),?\s*", ""),
     (r"(?i)\bit'?s (important|worth) (to )?not(e|ing) that\s*", ""),
     (r"(?i)\bin order to\b", "to"),
+    # Adulación y candor de Claude (references/patrones-claude.md)
+    (r"(?i)^\s*¡?tienes (toda la )?razón[!.]\s*", ""),
+    (r"(?i)^\s*¡(perfecto|excelente( idea)?)!\s*", ""),
+    (r"(?i)^\s*(you'?re absolutely (right|correct)|perfect)[!.]\s*", ""),
+    (r"(?i)\b(honestamente|para ser (honesto|franco|sincero)),\s*", ""),
+    (r"(?i)\bgenuinamente\s+", ""),
+    (r"(?i)\b(honestly|to be honest),\s*", ""),
+    (r"(?i)\bgenuinely\s+", ""),
     # Perífrasis -> simple
     (r"(?i)\bcon el (fin|objetivo|propósito) de\b", "para"),
     (r"(?i)\bdebido al hecho de que\b", "porque"),
@@ -135,6 +143,8 @@ def autotest():
     assert "podría fallar" in despues, despues
     assert "El resultado fue 42 ms" in despues, despues
     assert len(cambios) == 3, cambios
+    claude, _ = limpiar("¡Tienes toda la razón! Honestamente, el índice empieza en 0.\n")
+    assert claude == "El índice empieza en 0.\n", claude
     # No debe tocar texto ya limpio.
     limpio = "Medí 62.3 Hz con el osciloscopio. El prescaler quedó en 120.\n"
     salida, sin_cambios = limpiar(limpio)

@@ -76,6 +76,8 @@ Sobreuso de *muy*, *realmente*, *increíblemente*, *sumamente*.
 | Cierre de "desafíos" | "A pesar de sus [virtudes], X enfrenta desafíos…" + futuro optimista vago | Fórmula de Wikipedia, no la simple mención de problemas |
 | Cierre conciliador | Elogia A, elogia B, "ambos tienen sus fortalezas" | Nunca toma partido |
 
+Los tics propios de Claude (adulación al corregirse, narración en modo agente, binario contrastivo, aforismo final, "sostiene la carga") están en `patrones-claude.md`.
+
 Aperturas aduladoras y cierres de falso equilibrio son artefactos de RLHF: "Planteas un punto muy interesante", luego "en última instancia, la decisión es tuya". Responde la pregunta; no anuncies que era interesante.
 
 ## 4. Sustancia (lo que de verdad importa)

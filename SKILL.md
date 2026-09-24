@@ -1,6 +1,6 @@
 ---
 name: anti-slop-es
-description: Detecta y elimina "slop" de IA en texto, código y diseño usando umbrales de densidad medibles (Pew 2026, Wikipedia, Slopdetector) en vez de listas de palabras prohibidas. Úsala al revisar o escribir contenido, al limpiar código generado por IA, o cuando pidan "deslop", "anti-slop", "quitar el slop" o "esto suena a IA".
+description: Detecta y elimina "slop" de IA en texto, código y diseño usando umbrales de densidad medibles (Pew 2026, Wikipedia, Slopdetector) en vez de listas de palabras prohibidas. Úsala al revisar o escribir contenido, al armar presentaciones (PPTX, HTML, Beamer), al limpiar código generado por IA, o cuando pidan "deslop", "anti-slop", "quitar el slop" o "esto suena a IA".
 license: MIT
 ---
 
@@ -58,6 +58,7 @@ Antes de tocar nada, separa en:
 - **Sintaxis** — paralelismo negativo, regla de tres, rango falso, colas de gerundio, evasión de "ser/estar".
 - **Formato** — párrafos uniformes, muros de viñetas, títulos en Title Case, residuo de chat.
 - **Sustancia** — regresión a la media, trampa de abstracción, citas fantasma, relleno que se puede borrar.
+- **Claude** — si el texto salió de Claude, revisa también `references/patrones-claude.md`: adulación al corregirse ("¡Tienes toda la razón!"), narración de lo que va a hacer ("Déjame revisar", "Ahora voy a"), resúmenes en pretérito perfecto calcado ("He añadido"), banderas de franqueza ("honestamente", "la respuesta honesta"), reencuadres ("la verdadera pregunta es"), superlativos ("en lugar de simplemente", "todos y cada uno") y metáforas físicas ("sostiene la carga").
 
 La sustancia manda. El léxico es lo barato de falsificar.
 
@@ -69,6 +70,8 @@ La sustancia manda. El léxico es lo barato de falsificar.
 - Convierte rayas largas sobrantes en puntos.
 - Borra el metacomentario ("en este artículo veremos...").
 - Toma partido. El cierre "ambos tienen sus fortalezas" no es equilibrio, es vacío.
+- Reporta en pasado lo que ya pasó ("Corrí las pruebas: 14 pasan") y borra el anuncio de lo que ibas a hacer.
+- No califiques tus propias frases como honestas, profundas o importantes; termina cuando se acabe el contenido.
 - Conserva una frase solo si está haciendo trabajo.
 
 ```bash
@@ -107,6 +110,15 @@ En modo revisor:
 4. Emite veredicto con acciones requeridas.
 5. Devuelve los cambios a una pasada de escritura separada.
 
+## Modo diapositivas
+
+Para PPTX, decks HTML o Beamer. Revisa contra `references/patrones-diapositivas.md`.
+
+1. **Cada título es la conclusión de su diapositiva, con un dato.** "El caché bajó la latencia de 800 a 120 ms", no "El poder del caché".
+2. **Prueba de los títulos**: leídos en orden, cuentan la historia y dicen qué se recomienda.
+3. Sin viñetas de sustantivos abstractos, sin gerundios sin sujeto, sin emoji, sin diapositivas de "Agenda", "Conclusiones clave" o "¿Preguntas?" que no agregan nada.
+4. Mide el archivo final: `python3 scripts/detectar_slop.py deck.pptx --verbose` (lee diapositivas y notas; también `.html`).
+
 ## Modo diseño
 
 Revisa contra `references/patrones-diseno.md`. Prioriza lo estructural (jerarquía, espaciado con intención, contraste accesible) sobre lo estético (degradados, glassmorphism). El indicador más fuerte sigue siendo el mismo: si el diseño no se puede explicar desde el contenido, es plantilla.
@@ -115,6 +127,8 @@ Revisa contra `references/patrones-diseno.md`. Prioriza lo estructural (jerarqu�
 
 - `references/umbrales.md` — números medibles, léxico por generación de modelo, fuentes primarias.
 - `references/patrones-texto.md` — catálogo ES/EN de léxico, sintaxis, formato y sustancia.
+- `references/patrones-diapositivas.md` — títulos-afirmación, títulos de plantilla, viñetas vacías y diapositivas de relleno.
+- `references/patrones-claude.md` — fórmulas, tiempo verbal y tics retóricos propios de Claude, con evidencia y cambios por versión.
 - `references/patrones-codigo.md` — antipatrones de nombres, comentarios, estructura e implementación.
 - `references/patrones-diseno.md` — slop visual, de layout, de componentes y de microcopy.
 

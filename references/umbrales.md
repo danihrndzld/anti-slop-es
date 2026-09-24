@@ -27,7 +27,7 @@ Reinhart et al. (PNAS): GPT-4o usa cláusulas de participio presente a ~5,3× la
 | Patrón | Umbral | Fuerza |
 |---|---|---|
 | Señales totales | 2 en ~500 palabras = amarillo; 3–4 = huella | alta en conjunto |
-| Rayas largas | prosa humana ~3,7–10 por 1.000 palabras; los detectores se activan sobre ~20/1.000. GPT-4.1 ~10,6; Llama a menudo ~0 | débil sola |
+| Rayas largas | prosa humana ~3,7–10 por 1.000 palabras; los detectores se activan sobre ~20/1.000. GPT-4.1 ~10,6; Claude Opus 4.6 ~9,1; Llama a menudo ~0 | débil sola |
 | Trípticos ("rápido, escalable y seguro") | más de uno pulido por ~200 palabras | media |
 | *utilizar / facilitar / apalancar / demostrar* donde cabe *usar / ayudar / mostrar* | más de uno por ~300 palabras ganándole al verbo llano | media |
 | Longitud de párrafo | ChatGPT se agrupa en 3–5 oraciones; varianza baja (burstiness < ~0,4) | media |
@@ -46,6 +46,7 @@ Más útil que una lista negra congelada: el vocabulario rota por año de modelo
 | Mediados 2024–mediados 2025 (GPT-4o) | align with, fostering, showcasing, highlighting, enhance, enduring | alinearse con, fomentar, mostrar, destacar, potenciar, perdurable | "cuenta con / ofrece" en vez de "tiene" |
 | Mediados 2025 en adelante | emphasizing, enhance, highlighting, showcasing | enfatizando, potenciar, resaltando, exhibiendo | lenguaje enlatado de "cobertura mediática / notabilidad" |
 | Estilo Grok | causal, empirical, correlate, underscore | causal, empírico, correlacionar, subrayar | relleno seudocientífico |
+| Claude Opus 4.6–5 (2026) | rather than merely (160×), matters because (132×), every single (112×), less like a X and more like (105×), single most, load-bearing | en lugar de simplemente, esto importa porque, todos y cada uno, menos como un X y más como, lo más X de todo, sostiene la carga | metáfora física en vez de verbo literal ("el riesgo vive en") |
 
 Conjunto "típico de IA" de Pew: *delve, interplay, testament, additionally, align with, boasts, bolstered, crucial, emphasizing, enduring, enhance, essential, fostering, garner, highlight, intricate, key, landscape, meticulous, perfectly, pivotal, showcase, significant, tapestry, underscore, valuable, vibrant*.
 
@@ -63,6 +64,7 @@ Casi nunca aportan información:
 - Wikipedia, *Signs of AI writing*: https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing
 - ContentBeta, lista de 300+ palabras/patrones: https://www.contentbeta.com/blog/list-of-words-overused-by-ai/
 - Slopdetector, 12 umbrales medibles: https://slopdetector.org/blog/signs-of-ai-writing
+- Graphite, frases sobreusadas por modelo (tasas de Claude): https://graphite.io/five-percent/research/ai-tells
 - Rewritica: https://www.rewritica.com/blog/signs-of-ai-writing
 - GPTOne: https://gptone.me/blog/how-to-tell-if-something-was-written-by-chatgpt-9-signs
 

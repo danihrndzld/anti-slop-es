@@ -58,6 +58,7 @@ Desde la terminal:
 
 ```bash
 python3 scripts/detectar_slop.py documento.md --verbose
+python3 scripts/detectar_slop.py deck.pptx --verbose    # también .html y .tex
 python3 scripts/limpiar_slop.py documento.md            # previsualiza
 python3 scripts/limpiar_slop.py documento.md --guardar  # aplica, deja .backup
 ```
@@ -75,7 +76,7 @@ El detector cuenta señales ponderadas por cada 1.000 palabras:
 
 Los dos párrafos del autotest: uno que mide la deriva de un PCA9685 con osciloscopio (62.3 Hz contra 60 nominales) da **0.0**. Uno de relleno corporativo, con metacomentario, citas sin fuente y un cierre que no toma partido, da **524.6**.
 
-Pesos: residuo de chat vale 4. Citas fantasma, paralelismo negativo, metacomentario y cierre vacío valen 3, porque casi nunca tienen otra explicación. Inflación latinizante vale 1 y léxico de época vale 2; solo pesan cuando se acumulan.
+Pesos: residuo de chat vale 4, e incluye la adulación de Claude al corregirse. Citas fantasma, paralelismo negativo, metacomentario y cierre vacío valen 3, porque casi nunca tienen otra explicación. Los tics propios de Claude (narrar lo que va a hacer, calificar sus frases de honestas, reencuadrar la pregunta) también valen 3. Inflación latinizante vale 1 y léxico de época vale 2; solo pesan cuando se acumulan.
 
 El detector falla más con autores no nativos, y el vocabulario delator cambia con cada generación de modelo. Sirve para encontrar tramos a revisar. No sirve para decidir quién escribió algo.
 
@@ -85,6 +86,8 @@ El detector falla más con autores no nativos, y el vocabulario delator cambia c
 SKILL.md                        flujo completo: texto, código, diseño, modo revisor
 references/umbrales.md          números, léxico por época de modelo, fuentes
 references/patrones-texto.md    léxico, sintaxis, formato y sustancia (ES/EN)
+references/patrones-claude.md   tics propios de Claude: adulación, narración, retórica
+references/patrones-diapositivas.md  títulos-afirmación y slop de presentaciones
 references/patrones-codigo.md   nombres, comentarios, abstracción, fronteras
 references/patrones-diseno.md   visual, layout, componentes, microcopy
 scripts/detectar_slop.py        detector por densidad (--autotest incluido)
